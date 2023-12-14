@@ -24,17 +24,34 @@ def normalize_korean_string(korean_string: str) -> str:
 
 
 def main():
-    while(mode := (input("Choose mode (1. Nouns, 2. Polite Forms, 3. Grammar, 4 Native Korean Numbers, 5 Time of Day, 6 Counters): "))):
+    while(mode := (input("Choose mode (1. Nouns, 2. Verbs and Adjectives, 3. Grammar, 4 Native Korean Numbers, 5 Time of Day, 6 Counters, 7. Polite Forms, ): "))):
 
         mode = int(mode)
     
         if(mode == 1):
 
             score: int = 0
-            no_questions: int = len(nouns)
+            no_questions: int = 10
 
-            for word, meaning in randomised_nouns:
-                answer = input(f"What is the koren word for {meaning}?\n")
+            for word, meaning in helpers.get_nouns(no_questions):
+                answer = input(f"What is the koren word for `{meaning}`?\n")
+
+                if(normalize_korean_string(answer) == normalize_korean_string(word)):
+                    print("Correct\n")
+                    score += 1
+
+                else:
+                    print(f"Wrong answer - {word}\n")
+
+            print(f"Your score was {score}/{no_questions}")
+
+        if(mode == 2):
+
+            score: int = 0
+            no_questions: int = 10
+
+            for word, meaning in helpers.get_verbs(no_questions):
+                answer = input(f"What is the koren word for `{meaning}`?\n")
 
                 if(normalize_korean_string(answer) == normalize_korean_string(word)):
                     print("Correct\n")
@@ -51,7 +68,7 @@ def main():
             no_questions: int = 5
 
             for number in random.sample(range(1, 100), 5):
-                answer = input(f"What is the korean number for {number}?\n")
+                answer = input(f"What is the korean number for `{number}`?\n")
 
                 if(normalize_korean_string(answer) == normalize_korean_string(helpers.number_to_native(number))):
                     print("Correct\n")

@@ -1,7 +1,14 @@
 import json
+import random
 
 with open("./native_numbers.json", "r") as j:
      native_numbers = json.loads(j.read())
+
+with open("./nouns.json", "r") as j:
+     nouns = json.loads(j.read())
+
+with open("./verbs_adjectives.json", "r") as j:
+     verbs = json.loads(j.read())
 
 
 def number_to_native(number: int) -> str:
@@ -29,6 +36,15 @@ def number_to_native(number: int) -> str:
     return string;
 
 
+def get_verbs(sample = 10) -> list:
+    return (random.sample(list(verbs.items()), sample))
+
+
+def get_nouns(sample = 10) -> list:
+    return (random.sample(list(nouns.items()), sample))
+
 
 if __name__ == "__main__":
-    print(number_to_native(int(input())))
+    # print(number_to_native(int(input())))
+    for word, meaning in get_verbs():
+        print(word, meaning)
