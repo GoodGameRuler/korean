@@ -81,6 +81,29 @@ def main():
 
         elif(mode == 6):
 
+            hour = "시"
+            minutes = "분"
+
+            am_pm = ["오후", ""]
+
+            score: int = 0
+            no_questions: int = 4
+
+            for _ in range(10):
+                hours = (random.randint(1,12))
+                minutes = (random.randint(0,60))
+                am = (random.randint(1, 2))
+                answer = input(f"What is the korean expression for {hours}:{minutes} {'am' if am == 1 else 'pm'}?\n")
+
+                if(normalize_korean_string(answer) == am_pm[am] + " " +  normalize_korean_string(helpers.number_to_native(hours)) + ":" + str(minutes)):
+                    print("Correct\n")
+                    score += 1
+
+                # else:
+                #     print(f"Wrong answer - {answer} - correct ans - {am_pm[am] + " " +  normalize_korean_string(helpers.number_to_native(hours)) + ":" + str(minutes)} \n")
+
+        elif(mode == 6):
+
             counters = {"animals": "마리", "people": "명", "items": "게", "lessons": "과"}
 
             score: int = 0
