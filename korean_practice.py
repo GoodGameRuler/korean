@@ -1,12 +1,14 @@
+#!/bin/python3.12
+
 import unicodedata
 import random
 import signal
 import json
 
-
 def quit_gracefully(num, frame):
     print("\nQuitting gracefully!")
     exit(0)
+
 
 signal.signal(signal.SIGINT, quit_gracefully)
 
@@ -27,7 +29,7 @@ def main():
     while(mode := (input("Choose mode (1. Nouns, 2. Verbs and Adjectives, 3. Grammar, 4 Native Korean Numbers, 5 Time of Day, 6 Counters, 7. Polite Forms, ): "))):
 
         mode = int(mode)
-    
+
         if(mode == 1):
 
             score: int = 0
